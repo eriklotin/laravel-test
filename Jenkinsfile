@@ -6,9 +6,7 @@ pipeline {
             steps {
                 sh 'whoami'
                 sh 'id'
-                sh 'echo 1'
-                sh "echo ${workspace}"
-                sh 'echo ${env}'
+                sh 'echo 2'
                 sh 'docker run --rm -v "`pwd`:/var/www" eriklotin/workspace composer install'
             }
         }
