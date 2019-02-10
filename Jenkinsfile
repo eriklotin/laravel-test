@@ -1,11 +1,10 @@
 pipeline {
-    agent {
-        docker { image 'eriklotin/workspace' }
-    }
+    agent any
+
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
-                sh 'composer install'
+                sh 'docker run --rm -v `pwd`:/var/www eriklotin/workspace composer install'
             }
         }
     }
