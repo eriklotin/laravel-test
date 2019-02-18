@@ -5,8 +5,16 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "composer install"'
-                bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
+
             }
         }
     }
+    post {
+        success {
+            setBuildStatus("Build succeeded", "SUCCESS");
+        }
+        failure {
+            setBuildStatus("Build failed", "FAILURE");
+        }
+      }
 }
